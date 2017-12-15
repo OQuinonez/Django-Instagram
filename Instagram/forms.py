@@ -1,6 +1,7 @@
 from django import forms
 from .models import Document
-from PIL import Image
+
+# from PIL import Image
 
 
 class AddPicForm(forms.ModelForm):
