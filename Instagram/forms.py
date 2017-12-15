@@ -1,8 +1,9 @@
 from django import forms
 from .models import Document
+from PIL import Image
 
 
 class AddPicForm(forms.ModelForm):
     class Meta:
         model = Document
-        fields = ('description', 'Document', )
+        fields = ('description', 'photo', )
