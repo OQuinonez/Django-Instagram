@@ -1,17 +1,20 @@
 from django.shortcuts import render
 from django.conf import settings
+from django.http import HttpResponse
 from django.core.files.storage import FileSystemStorage
 from .forms import AddPicForm
 
 # Create your views here.
 
 
+def hello(request):
+    return HttpResponse("Hello")
+
+
 def add_pic(request):
-    if request.method == 'POST':
-        form = AddPicForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
+    form = AddPicForm(request.POST, request.FILES)
+    if form.is_valid():
+        form.save()
+        return redirect(hello(request))
     else:
-        form = AddPicForm()
-    return render(request, 'Instagram/add.html', {'form': form})
+        return render(request, 'Instagram/add.html', {'form': form})
