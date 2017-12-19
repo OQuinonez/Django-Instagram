@@ -3,8 +3,6 @@
     {% csrf_token %} {{ form.as_p }}
     <button type="submit">Upload</button>
 </form>
-<p>Hello World</p>
-<p>
-    <a href="{% url 'home' %}">Return to home</a>
-</p>
+<a href="{% url 'home' %}">Return to home</a>
+
 {% endblock %}
