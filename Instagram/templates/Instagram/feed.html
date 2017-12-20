@@ -1,1 +1,2 @@
-{% extends 'Instagram/base.html' %} {% block content %} {% endblock %}
+{% extends 'Instagram/base.html' %} {%load static%} {% block content %} {% if picture %} {% for pictures in picture %}
+<img src="{% static pictures %}"> {% endfor %} {% else %} {% endif %} {% endblock %}
