@@ -1,9 +1,14 @@
 {% extends 'Instagram/base.html' %} {%load static%} {% block content %}
 <h2>oz's photos</h2>
 <div>
-    {% if pictures %} {% for picture in pictures %}
-    <img src="{% static picture %}"> {% endfor %}
+    {% if pictures %}
+        {% for picture in pictures %}
+        <div>
+            <img src="{% static picture %}" />
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No pictures :'(</p>
+    {% endif %}
 </div>
-{% else %}
-<p>No pictures :'(</p>
-{% endif %} {% endblock %}
+{% endblock %}
