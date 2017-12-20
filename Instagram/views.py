@@ -3,7 +3,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.core.files.storage import FileSystemStorage
 from .forms import AddPicForm
-from .models import Document
+from Instagram import models
 
 # Create your views here.
 
@@ -13,10 +13,11 @@ def hello(request):
 
 
 def display_pic(request):
-    picture = [
+    pictures = [
         picture.photo.url.replace('Instagram/static', '')
         for picture in models.Document.objects.all()
     ]
+    return render(request, 'Instagram/feed.html', {'pictures': pictures})
 
 
 def add_pic(request):
