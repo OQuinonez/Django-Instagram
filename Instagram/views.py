@@ -5,8 +5,6 @@ from django.core.files.storage import FileSystemStorage
 from .forms import AddPicForm
 from Instagram import models
 
-# Create your views here.
-
 
 def hello(request):
     return HttpResponse("Hello")
@@ -24,6 +22,6 @@ def add_pic(request):
     form = AddPicForm(request.POST, request.FILES)
     if form.is_valid():
         form.save()
-        return redirect(display_pic(request))
+        return redirect('Instagram:feed')
     else:
         return render(request, 'Instagram/add.html', {'form': form})
