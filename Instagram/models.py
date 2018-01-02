@@ -6,3 +6,6 @@ class Document(models.Model):
     # document = models.FileField(upload_to='add/')
     # uploaded_at = models.DateTimeField(auto_now_add=True)
     photo = models.ImageField(upload_to='Instagram/static/Instagram/images')
+
+    def img_url(self):
+        return self.image.url[len('Instagram/images/'):]
