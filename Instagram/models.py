@@ -8,4 +8,4 @@ class Document(models.Model):
     photo = models.ImageField(upload_to='Instagram/static/Instagram/images')
 
     def img_url(self):
-        return self.image.url[len('Instagram/images/'):]
+        return self.photo.url[len('Instagram/images/'):]
