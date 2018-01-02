@@ -25,7 +25,7 @@ class Filters(forms.Form):
                                         'SMOOTH_MORE'), ('SHARPEN', 'SHARPEN')]
     f = forms.ChoiceField(choices=f_choices)
 
-    def apply_filter():
+    def apply_filter(self):
         return {
             'BLUR': ImageFilter.BLUR,
             'CONTOUR': ImageFilter.CONTOUR,
@@ -37,4 +37,4 @@ class Filters(forms.Form):
             'SMOOTH': ImageFilter.SMOOTH,
             'SMOOTH_MORE': ImageFilter.SMOOTH_MORE,
             'SHARPEN': ImageFilter.SHARPEN
-        }.get()
+        }.get(self.cleaned_data['f'], None)
