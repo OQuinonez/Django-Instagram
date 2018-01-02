@@ -3,7 +3,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.views import View
 from django.core.files.storage import FileSystemStorage
-from .forms import AddPicForm
+from .forms import AddPicForm, Filters
 from Instagram import models
 from PIL import Image
 
@@ -39,17 +39,18 @@ class DeletePic(View):
 
 class AddFilter(View):
     def get(self, request, image_id):
-        form = Filters  #Comes from forms.py erase this comment after you're don
+        form = Filters()
         path = 'Instagram/static/' + models.Document.objects.get(
-            id=image_id).image_url()
-        return render(request, 'Instagram/feed', {'form': form})
+            id=image_id).img_url()
+        return render(request, 'Instagram/feed.html', {'form': form})
 
     def post(self, request, image_id):
         form = Filters(request.POST)
-        path = 'Instagram/static' + models.Document.objects.get(
-            id=image_id).image_url()
+        path = 'Instagram/static/' + models.Document.objects.get(
+            id=image_id).img_url()
         image = Image.open(path)
         if form.is_valid():
-            f = form.filter()
+            f = form.apply_filter()
             image.convert('RGB').filter(f).save(path)
             return redirect('Instagram:feed')
+        return render(request, 'Instagram/filter.html', {'form': form})
