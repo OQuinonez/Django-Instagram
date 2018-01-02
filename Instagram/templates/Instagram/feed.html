@@ -8,8 +8,15 @@
     <div class="row">
     {% if pictures %}
             {% for picture in pictures %}
-            <div class="col-lg-3 col-md-6 col-sm-8 col-sm-offset-2 col-ls-offset-0 col-md-offset-0 img-div">
-                <img src="{% static picture %}" >
+            <div class="col-lg-3 col-md-6 col-sm-8 col-sm-offset-2 col-lg-offset-0 col-md-offset-0 img-div">
+
+                <img src="{% static picture.url %}" >
+                <form action="{% url 'Instagram:delete' picture.id %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <button class="btn btn-danger" type="submit">
+                    Delete
+                </button>
+                </form>
             </div>
         {% endfor %}
     {% else %}
