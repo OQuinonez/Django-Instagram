@@ -17,6 +17,12 @@
                     Delete
                 </button>
                 </form>
+                <form action="{% url 'Instagram:filter' picture.id %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <button class="btn btn-primary" type="submit">
+                        Filter
+                    </button>
+                    </form>
             </div>
         {% endfor %}
     {% else %}
