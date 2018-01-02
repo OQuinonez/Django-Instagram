@@ -6,5 +6,6 @@ app_name = 'Instagram'
 urlpatterns = [
     path('add/', views.AddPic.as_view(), name='add'),
     path('feed/', views.PicView.as_view(), name='feed'),
-    path('delete/<image_id>', views.DeletePic.as_view(), name='delete')
+    path('delete/<image_id>', views.DeletePic.as_view(), name='delete'),
+    path('filter/<image_id>', views.AddFilter.as_view(), name='filter'),
 ]
