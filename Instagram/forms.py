@@ -45,6 +45,6 @@ class CommentForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.document = document
 
-    def saveC(self):
+    def saveComment(self):
         return self.document.comment_set.create(
             comment=self.cleaned_data['comment'])
