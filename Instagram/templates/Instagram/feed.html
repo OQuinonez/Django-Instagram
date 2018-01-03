@@ -23,23 +23,22 @@
                         Filter
                 </button>
                 </form>
-                {% if obj.comment_set.all %}
+                {% if picture.comments %}
                 <ul>
-                    {% for comment in obj.comment_set.all %}
+                    {% for c in picture.comments %}
                     <li>
-                        {{ comment.comment }} - time: {{ comment.time }}
-                        <p>Hello World!</p>
+                        {{ c }}
                     </li>
                     {% endfor %}
                 </ul>
                 {% endif %}
                 <form action="{% url 'Instagram:comment' picture.id %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ comment_form}}
+                {{ post_comment }}
                 <button type="submit">Comment</button>
                 </form>
             </div>
-        {% endfor %}
+            {% endfor %}
     {% else %}
         <p>No pictures :'(</p>
     {% endif %}
