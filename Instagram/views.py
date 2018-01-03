@@ -8,13 +8,28 @@ from Instagram import models
 from PIL import Image
 
 
+def make_obj(picture):
+    comments = []
+    comment_set = picture.comment_set.all()
+    for c in comment_set:
+        comments.append(c.comment)
+    return {
+        'url': picture.photo.url.replace('Instagram/static', ''),
+        'id': picture.id,
+        'comments': comments
+    }
+
+
 class PicView(View):
     def get(self, request):
-        pictures = [{
-            'url': picture.photo.url.replace('Instagram/static', ''),
-            'id': picture.id
-        } for picture in models.Document.objects.all()]
-        return render(request, 'Instagram/feed.html', {'pictures': pictures})
+        picture_objects = models.Document.objects.all()
+        pictures = []
+        for picture in picture_objects:
+            pictures.append(make_obj(picture))
+
+        return render(request, 'Instagram/feed.html',
+                      {'pictures': pictures,
+                       'post_comment': CommentForm()})
 
 
 class AddPic(View):
@@ -61,7 +76,7 @@ class InsertComment(View):
         pic = models.Document.objects.get(id=image_id)
         form = CommentForm(pic, request.POST)
         if form.is_valid():
-            form.save()
+            form.saveComment()
             return redirect('Instagram:feed')
         else:
             return redirect('Instagram:feed')
