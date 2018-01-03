@@ -12,5 +12,5 @@ class Document(models.Model):
 
 
 class Comment(models.Model):
-    comment = models.CharField(max_length=150, blank=True)
+    comment = models.CharField(max_length=150)
     document = models.ForeignKey(Document, on_delete=models.CASCADE)
