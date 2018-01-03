@@ -24,13 +24,16 @@
                 </button>
                 </form>
                 {% if picture.comments %}
-                <ul>
+                <h3>
+                    Comments:
+                </h3>
                     {% for c in picture.comments %}
-                    <li>
+                    <p>
+                        <div class="comment">
                         {{ c }}
-                    </li>
+                        </div>
+                    </p>
                     {% endfor %}
-                </ul>
                 {% endif %}
                 <form action="{% url 'Instagram:comment' picture.id %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
