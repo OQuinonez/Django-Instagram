@@ -3,7 +3,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.views import View
 from django.core.files.storage import FileSystemStorage
-from .forms import AddPicForm, Filters
+from .forms import AddPicForm, Filters, CommentForm
 from Instagram import models
 from PIL import Image
 
@@ -54,3 +54,14 @@ class AddFilter(View):
             image.convert('RGB').filter(f).save(path)
             return redirect('Instagram:feed')
         return render(request, 'Instagram/filter.html', {'form': form})
+
+
+class InsertComment(View):
+    def post(self, request, image_id):
+        pic = models.Document.objects.get(id=image_id)
+        form = CommentForm(pic, request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('Instagram:feed')
+        else:
+            return redirect('Instagram:feed')
