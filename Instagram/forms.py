@@ -1,8 +1,6 @@
 from django import forms
-from .models import Document
+from .models import Document, Comment
 from PIL import ImageFilter
-
-# from PIL import Image
 
 
 class AddPicForm(forms.ModelForm):
@@ -23,7 +21,7 @@ class Filters(forms.Form):
                                                                'FIND_EDGES'),
                  ('SMOOTH', 'SMOOTH'), ('SMOOTH_MORE',
                                         'SMOOTH_MORE'), ('SHARPEN', 'SHARPEN')]
-    f = forms.ChoiceField(choices=f_choices)
+    Choose_A_Filter = forms.ChoiceField(choices=f_choices)
 
     def apply_filter(self):
         return {
@@ -37,4 +35,16 @@ class Filters(forms.Form):
             'SMOOTH': ImageFilter.SMOOTH,
             'SMOOTH_MORE': ImageFilter.SMOOTH_MORE,
             'SHARPEN': ImageFilter.SHARPEN
-        }.get(self.cleaned_data['f'], None)
+        }.get(self.cleaned_data['Choose_A_Filter'], None)
+
+
+class CommentForm(forms.Form):
+    comment = forms.CharField()
+
+    def __init__(self, document=None, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.document = document
+
+    def saveC(self):
+        return self.document.comment_set.create(
+            comment=self.cleaned_data['comment'])
