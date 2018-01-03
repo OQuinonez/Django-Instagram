@@ -9,3 +9,8 @@ class Document(models.Model):
 
     def img_url(self):
         return self.photo.url[len('Instagram/images/'):]
+
+
+class Comment(models.Model):
+    comment = models.CharField(max_length=150, blank=True)
+    document = models.ForeignKey(Document, on_delete=models.CASCADE)
