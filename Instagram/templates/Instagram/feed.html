@@ -13,14 +13,14 @@
                 <img src="{% static picture.url %}" >
                 <form action="{% url 'Instagram:delete' picture.id %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                <button class="btn btn-danger" type="submit">
-                    Delete
+                <button class="delete" type="submit">
+                   <strong> Delete </strong>
                 </button>
                 </form>
                 <form action="{% url 'Instagram:filter' picture.id %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <button class="btn btn-primary" type="submit">
-                        Filter
+                    <button class="btn" type="submit">
+                        <strong>Filter </strong>
                 </button>
                 </form>
                 {% if picture.comments %}
@@ -35,7 +35,7 @@
                 <form action="{% url 'Instagram:comment' picture.id %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ post_comment }}
-                <button type="submit">Comment</button>
+                <button class="btn" type="submit">Comment</button>
                 </form>
             </div>
             {% endfor %}
