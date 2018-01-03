@@ -7,8 +7,6 @@
     padding: 10px;
     width: 50%;
     height: 95%;
-    /* margin-bottom: 15px;
-    margin-right: 6px; */
 }
 
 img {
@@ -36,4 +34,8 @@ img {
     background-color: #f11212;
     padding: 12px;
     margin: 8px;
+}
+
+.comment {
+    font-size: 1.3em;
 }
