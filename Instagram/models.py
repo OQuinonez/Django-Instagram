@@ -1,10 +1,19 @@
 from django.db import models
+from django import forms
+
+# class Topics(models.Model):
+#     nature = 'Nature'
+#     sports = 'Sports'
+#     code = 'Code'
+#     animals = 'Animals'
+#     other = 'Other'
+#     TOPIC_CHOICES = ((nature, 'NATURE'), (sports, 'SPORTS'), (code, 'CODE'),
+#                      (animals, 'ANIMALS'), (other, 'OTHER'))
+#     choice = models.CharField(choices=TOPIC_CHOICES, default='')
 
 
 class Document(models.Model):
     description = models.CharField(max_length=255, blank=True)
-    # document = models.FileField(upload_to='add/')
-    # uploaded_at = models.DateTimeField(auto_now_add=True)
     photo = models.ImageField(upload_to='Instagram/static/Instagram/images')
 
     def img_url(self):
