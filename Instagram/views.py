@@ -15,6 +15,7 @@ def make_obj(picture):
         comments.append(c.comment)
     return {
         'url': picture.photo.url.replace('Instagram/static', ''),
+        'description': picture.description,
         'id': picture.id,
         'comments': comments
     }
