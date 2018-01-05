@@ -7,12 +7,14 @@
     padding: 10px;
     width: 50%;
     height: 95%;
+    border: 4px;
+    border-color: black;
 }
 
 img {
-    max-width: 400px;
+    /* max-width: 400px; */
     max-height: 400px;
-    width: 100%;
+    width: 80%;
     height: 120%;
     margin-bottom: 25px;
 }
@@ -38,4 +40,9 @@ img {
 
 .comment {
     font-size: 1.3em;
+}
+
+.panel {
+    width: 70%;
+    margin: auto;
 }
