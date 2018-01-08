@@ -18,7 +18,7 @@
             <div class="col-lg-3 col-md-6 col-sm-8 col-sm-offset-2 col-lg-offset-0 col-md-offset-0 img-div">
                 <img src="{% static picture.url %}" >
                 <div class="panel panel-warning">
-                    <div class="panel-heading">{{ picture.description }}</div>
+                    <div class="panel-heading">{{ picture.description }} </div>
                     <div class="panel-body">
                         <form action="{% url 'Instagram:delete' picture.id %}" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
@@ -34,6 +34,7 @@
                             </form>
                             {% if picture.comments %}
                             <h3>
+                                <p>{{ picture.choosing }}</p>
                                 Comments:
                             </h3>
                                 {% for c in picture.comments %}
