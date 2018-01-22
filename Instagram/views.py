@@ -5,7 +5,7 @@ from django.views import View
 from django.core.files.storage import FileSystemStorage
 from .forms import AddPicForm, Filters, CommentForm
 from Instagram import models
-from PIL import Image
+from PIL import Image, ImageFilter
 
 
 def make_obj(picture):

@@ -35,7 +35,16 @@ class Filters(forms.Form):
             'SMOOTH': ImageFilter.SMOOTH,
             'SMOOTH_MORE': ImageFilter.SMOOTH_MORE,
             'SHARPEN': ImageFilter.SHARPEN
+            # 'CUSTOM1': frozen_filter()
         }.get(self.cleaned_data['Choose_A_Filter'], None)
+
+
+# class topics(forms.Form):
+#     t_choices = [('', ''), ('NATURE', 'NATURE'), ('OTHER', 'OTHER'),
+#                  ('ANIMALS', 'ANIMALS'), ('CODE', 'CODE'), ('SPORTS',
+#                                                             'SPORTS')]
+
+#     Choose_A_Topic = forms.ChoiceField(choices=t_choices)
 
 
 class CommentForm(forms.Form):
